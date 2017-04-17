@@ -1,124 +1,141 @@
 var data = [
     {
         name: 'Europe',
-        plan: '$10,525,200',
-        forecast: '$12,700,200',
+        plan: 10525200,
+        forecast: 12700200,
         bestCase: [
-            '$12,700,200',
-            '$11,700,400'
+            12700200,
+            11700400
         ],
         commit: [
-            '$12,700,200',
-            '$11,700,400'
+            12700200,
+            11700400
         ]
     },
     {
         name: 'Belgium',
-        plan: '$2,525,200',
-        forecast: '$3,125,200',
+        plan: 2525200,
+        forecast: 3125200,
         bestCase: [
-            '$2,900,450',
-            '$2,890,120'
+            2900450,
+            2890120
         ],
         commit: [
-            '$2,900,450',
-            '$2,890,120'
+            2900450,
+            2890120
         ]
     },
     {
         name: 'England',
-        plan: '$4,600,400',
-        forecast: '$2,500,600',
+        plan: 4600400,
+        forecast: 2500600,
         bestCase: [
-            '$3,900,300',
-            '$2,900,300'
+            3900300,
+            2900300
         ],
         commit: [
-            '$3,900,300',
-            '$2,900,120'
+            3900300,
+            2900120
         ]
     },
     {
         name: 'Sweden',
-        plan: '$2,425,200',
-        forecast: '$5,425,200',
+        plan: 2425200,
+        forecast: 5425200,
         bestCase: [
-            '$6,200,300',
-            '$2,400,900'
+            6200300,
+            2400900
         ],
         commit: [
-            '$6,200,200',
-            '$2,400,900'
+            6200200,
+            2400900
         ]
     },
     {
         name: 'Finland',
-        plan: '$1,700,200',
-        forecast: '$4,700,200',
+        plan: 1700200,
+        forecast: 4700200,
         bestCase: [
-            '$4,702,120',
-            '$4,300,200'
+            4702120,
+            4300200
         ],
         commit: [
-            '$4,702,120',
-            '$4,300,200'
+            4702120,
+            4300200
         ]
     }
 ]
-let results = []
+//function to make dollar display;
+function toDollar(num){
+    let result = [];
+    let count = 0;
+    let str = num.toString()
+    for(let i = str.length - 1; i >= 0; i--){
+        if(count === 3){
+            result.unshift(',');
+            result.unshift(str[i]);
+            count = 1;
+        } else {
+            result.unshift(str[i])
+            count++
+        }
+    }
+    result.unshift('$');
+    return result.join('');
+}
 
 //creating each row for the table
-for(let i = 0; i < data.length; i++){
-    
-    let name = document.createElement('div');
-    name.className = "name"
-    let plan = document.createElement('div');
-    plan.className = 'plane';
-    let forecast = document.createElement('div');
-    forecast.className = 'forecase';
-    let bestCase = document.createElement('div');
-    bestCase.className = 'best'
-    let commit = document.createElement('div');
-    commit.className = 'commit';
+function table(){
+    for(let i = 0; i < data.length; i++){
+        
+        let name = document.createElement('div');
+        name.className = "name"
+        let plan = document.createElement('div');
+        plan.className = 'plan';
+        let forecast = document.createElement('div');
+        forecast.className = 'forecast';
+        let bestCase = document.createElement('div');
+        bestCase.className = 'best'
+        let commit = document.createElement('div');
+        commit.className = 'commit';
 
-    name.innerHTML = data[i].name;
-    plan.innerHTML = data[i].plan;
-    forecast.innerHTML = data[i].forecast;
+        name.innerHTML = data[i].name;
+        plan.innerHTML = toDollar(data[i].plan);
+        forecast.innerHTML = toDollar(data[i].forecast);
 
-    //best case and commit has multiple elements that needed to be appended;
-    for(let j = 0; j < data[i].bestCase.length; j++){
-        let item = document.createElement('p');
-        item.innerHTML = data[i].bestCase[j];
-        bestCase.appendChild(item);
+        //best case and commit has multiple elements that needed to be appended;
+        for(let j = 0; j < data[i].bestCase.length; j++){
+            let item = document.createElement('p');
+            item.innerHTML = toDollar(data[i].bestCase[j]);
+            bestCase.appendChild(item);
+        }
+
+        for(let x = 0; x < data[i].commit.length; x++){
+            let item = document.createElement('p');
+            item.innerHTML = toDollar(data[i].commit[x]);
+            commit.appendChild(item);
+        }
+
+        let table = document.getElementsByClassName('container'); //getting the container and appending the data
+
+        table[0].appendChild(name);
+        table[0].appendChild(plan);
+        table[0].appendChild(forecast);
+        table[0].appendChild(bestCase);
+        table[0].appendChild(commit);
     }
-
-    for(let x = 0; x < data[i].commit.length; x++){
-        let item = document.createElement('p');
-        item.innerHTML = data[i].commit[x];
-        commit.appendChild(item);
-    }
-
-    let table = document.getElementsByClassName('container'); //getting the container and appending the data
-
-    table[0].appendChild(name);
-    table[0].appendChild(plan);
-    table[0].appendChild(forecast);
-    table[0].appendChild(bestCase);
-    table[0].appendChild(commit);
 }
+
+table();
 
 //SHOW MORE AND LESS LOGIC
 let showLess = document.getElementsByClassName('best');
 let showLess2 = document.getElementsByClassName('commit');
 
-console.log(showLess, showLess2);
-
 let selector = document.getElementsByTagName('input');
-console.log(selector);
 selector[0].checked = true; //default selection or showing more
 
 function less(){
-    console.log('clicked');
     if(selector[1].checked){
         selector[0].checked = false;
     }
@@ -154,3 +171,125 @@ function more(){
         }
     }
 }
+
+//ASCENDING AND DESCENDING LOGIC
+function clearTable(){
+    let parent = document.getElementsByClassName('container')[0];
+    console.log(parent);
+    for(let i = 0; i < document.getElementsByClassName('name').length; i++){
+        parent.removeChild(document.getElementsByClassName('name')[i])
+        i--
+    }
+    for(let i = 0; i < document.getElementsByClassName('plan').length; i++){
+        parent.removeChild(document.getElementsByClassName('plan')[i])
+        i--
+    }
+    for(let i = 0; i < document.getElementsByClassName('forecast').length; i++){
+        parent.removeChild(document.getElementsByClassName('forecast')[i])
+        i--
+    }
+    for(let i = 0; i < document.getElementsByClassName('best').length; i++){
+        parent.removeChild(document.getElementsByClassName('best')[i])
+        i--
+    }
+    for(let i = 0; i < document.getElementsByClassName('commit').length; i++){
+        parent.removeChild(document.getElementsByClassName('commit')[i])
+        i--
+    }
+}
+let countn = 0;
+let countp = 0;
+let countf = 0;
+let countb = 0;
+let countc = 0;
+
+function sortName(){
+    if(countn === 0){
+        data.sort(function(a,b){
+            return a.name > b.name;
+        })
+        countn++
+        clearTable();
+        table();
+    } else if(countn === 1){
+        data.sort(function(a,b){
+            return b.name > a.name;
+        })
+        countn = 0
+        clearTable();
+        table();
+    } 
+}
+function sortPlan(){
+    if(countp === 0){
+        data.sort(function(a, b){
+            return b.plan - a.plan
+        })
+        countp++
+        clearTable();
+        table();
+    } else if(countp === 1){
+        data.sort(function(a, b){
+            return a.plan - b.plan
+        })
+        countp = 0;
+        clearTable();
+        table();
+    } 
+}
+
+function sortForeCast(){
+    if(countf === 0){
+        data.sort(function(a, b){
+            return b.forecast - a.forecast
+        })
+        countf++
+        clearTable();
+        table();
+    } else if(countf === 1){
+        data.sort(function(a, b){
+            return a.forecast - b.forecast
+        })
+        clearTable();
+        table();
+        countf = 0
+    }
+}
+
+function sortBestCase(){
+    if(countb === 0){
+        data.sort(function(a, b){
+            return b.bestCase[0] - a.bestCase[0];
+        })
+        countb++
+        clearTable();
+        table();
+    } else if(countb === 1){
+        data.sort(function(a, b){
+            return a.bestCase[0] - b.bestCase[0];
+        })
+        countb = 0;
+        clearTable();
+        table();
+    }
+}
+
+function sortCommit(){
+    if(countc === 0){
+        data.sort(function(a, b){
+            return b.commit[0] - a.commit[0]
+        })
+        countc++
+        clearTable();
+        table();
+    } else if(countc === 1){
+        data.sort(function(a, b){
+            return a.commit[0] - b.commit[0]
+        })
+        countc = 0;
+        clearTable();
+        table();
+    }
+}
+
+
