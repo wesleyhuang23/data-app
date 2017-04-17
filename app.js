@@ -107,19 +107,50 @@ for(let i = 0; i < data.length; i++){
     table[0].appendChild(commit);
 }
 
+//SHOW MORE AND LESS LOGIC
+let showLess = document.getElementsByClassName('best');
+let showLess2 = document.getElementsByClassName('commit');
+
+console.log(showLess, showLess2);
+
 let selector = document.getElementsByTagName('input');
 console.log(selector);
-selector[0].checked = true;
+selector[0].checked = true; //default selection or showing more
 
 function less(){
     console.log('clicked');
     if(selector[1].checked){
         selector[0].checked = false;
     }
+
+    for(let i = 0; i < showLess.length; i++){
+        let current = showLess[i];
+        for(let j = 1; j < current.childNodes.length; j++){
+            current.childNodes[j].style.display = 'none';
+        }
+    }
+
+    for(let i = 0; i < showLess2.length; i++){
+        let current = showLess2[i];
+        for(let j = 1; j < current.childNodes.length; j++){
+            current.childNodes[j].style.display = 'none';
+        }
+    }
 }
 function more(){
     if(selector[0].checked){
         selector[1].checked = false;
-        selector[0].checked = true;
+    }
+    for(let i = 0; i < showLess.length; i++){
+        let current = showLess[i];
+        for(let j = 1; j < current.childNodes.length; j++){
+            current.childNodes[j].style.display = 'block';
+        }
+    }
+    for(let i = 0; i < showLess2.length; i++){
+        let current = showLess2[i];
+        for(let j = 1; j < current.childNodes.length; j++){
+            current.childNodes[j].style.display = 'block';
+        }
     }
 }
