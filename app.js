@@ -66,20 +66,39 @@ var data = [
     }
 ]
 let results = []
+
+//creating each row for the table
 for(let i = 0; i < data.length; i++){
     
     let name = document.createElement('div');
+    name.className = "name"
     let plan = document.createElement('div');
+    plan.className = 'plane';
     let forecast = document.createElement('div');
+    forecast.className = 'forecase';
     let bestCase = document.createElement('div');
+    bestCase.className = 'best'
     let commit = document.createElement('div');
+    commit.className = 'commit';
+
     name.innerHTML = data[i].name;
     plan.innerHTML = data[i].plan;
     forecast.innerHTML = data[i].forecast;
-    bestCase.innerHTML = data[i].bestCase[0];
-    commit.innerHTML = data[i].commit[0];
 
-    let table = document.getElementsByClassName('container');
+    //best case and commit has multiple elements that needed to be appended;
+    for(let j = 0; j < data[i].bestCase.length; j++){
+        let item = document.createElement('p');
+        item.innerHTML = data[i].bestCase[j];
+        bestCase.appendChild(item);
+    }
+
+    for(let x = 0; x < data[i].commit.length; x++){
+        let item = document.createElement('p');
+        item.innerHTML = data[i].commit[x];
+        commit.appendChild(item);
+    }
+
+    let table = document.getElementsByClassName('container'); //getting the container and appending the data
 
     table[0].appendChild(name);
     table[0].appendChild(plan);
@@ -87,6 +106,20 @@ for(let i = 0; i < data.length; i++){
     table[0].appendChild(bestCase);
     table[0].appendChild(commit);
 }
-console.log(name);
 
+let selector = document.getElementsByTagName('input');
+console.log(selector);
+selector[0].checked = true;
 
+function less(){
+    console.log('clicked');
+    if(selector[1].checked){
+        selector[0].checked = false;
+    }
+}
+function more(){
+    if(selector[0].checked){
+        selector[1].checked = false;
+        selector[0].checked = true;
+    }
+}
