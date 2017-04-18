@@ -357,14 +357,14 @@ function sortCommit(){
 function sortComments(){
     if(countcom === 0){
         data.sort(function(a, b){
-            return b.comments[0] - a.comments[0]
+            return b.comments[0] > a.comments[0]
         })
         countcom++
         clearTable();
         table();
     } else if(countcom === 1){
         data.sort(function(a, b){
-            return a.comments[0] - b.comments[0]
+            return a.comments[0] > b.comments[0]
         })
         countcom = 0;
         clearTable();
