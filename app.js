@@ -229,12 +229,23 @@ function clearTable(){
         parent.removeChild(document.getElementsByClassName('commit')[i])
         i--
     }
+    for(let i = 0; i < document.getElementsByClassName('comments').length; i++){
+        parent.removeChild(document.getElementsByClassName('comments')[i])
+        i--
+    }
+    for(let i = 0; i < document.getElementsByClassName('monthly').length; i++){
+        parent.removeChild(document.getElementsByClassName('monthly')[i])
+        i--
+    }
 }
+//counters to keep track of acsencending or descending
 let countn = 0;
 let countp = 0;
 let countf = 0;
 let countb = 0;
+let countm = 0;
 let countc = 0;
+let countcom = 0;
 
 function sortName(){
     if(countn === 0){
@@ -307,6 +318,24 @@ function sortBestCase(){
     }
 }
 
+function sortMonthly(){
+    if(countm === 0){
+        data.sort(function(a, b){
+            return b.monthlyPlan - a.monthlyPlan
+        })
+        countm++
+        clearTable();
+        table();
+    } else if(countm === 1){
+        data.sort(function(a, b){
+            return a.monthlyPlan - b.monthlyPlan;
+        })
+        countm = 0;
+        clearTable();
+        table();
+    }
+}
+
 function sortCommit(){
     if(countc === 0){
         data.sort(function(a, b){
@@ -320,6 +349,24 @@ function sortCommit(){
             return a.commit[0] - b.commit[0]
         })
         countc = 0;
+        clearTable();
+        table();
+    }
+}
+
+function sortComments(){
+    if(countcom === 0){
+        data.sort(function(a, b){
+            return b.comments[0] - a.comments[0]
+        })
+        countcom++
+        clearTable();
+        table();
+    } else if(countcom === 1){
+        data.sort(function(a, b){
+            return a.comments[0] - b.comments[0]
+        })
+        countcom = 0;
         clearTable();
         table();
     }
@@ -374,7 +421,7 @@ function createTable(){
     inputs.push(document.getElementById('monthly'));
     inputs.push(document.getElementById('commit'));
     inputs.push(document.getElementById('comments'));
-
+    //shows fields that are checked
     let check = inputs.filter(function(input){
         return input.checked === true;
     })
@@ -383,7 +430,12 @@ function createTable(){
         for(let j = 0; j < current.length; j++){
             current[j].style.display = 'block';
         }
+        let current2 = document.getElementsByClassName('h-' + check[i].id);
+        for(let x = 0; x < current2.length; x++){
+            current2[x].style.display = 'block';
+        }
     }
+    //Sets table size when differnt number of field selected
     let tableDisplay = document.getElementsByClassName('container')[0];
     if(check.length === 5){
         tableDisplay.id = '';
@@ -396,6 +448,7 @@ function createTable(){
     } else if(check.length === 1) {
         tableDisplay.id = 'one';
     }
+    //hides fields that are unchecked
     let uncheck = inputs.filter(function(input){
         return input.checked !== true;
     })
@@ -403,6 +456,10 @@ function createTable(){
         let current = document.getElementsByClassName(uncheck[i].id);
         for(let j = 0; j < current.length; j++){
             current[j].style.display = 'none';
+        }
+        let current2 = document.getElementsByClassName('h-' + uncheck[i].id);
+        for(let x = 0; x < current2.length; x++){
+            current2[x].style.display = 'none';
         }
     }
 }
