@@ -506,6 +506,8 @@ function createTable(){
         button.style.position = 'relative';
         button.style.float = 'right';
         button.style.marginTop = '20px';
+        button.style.top = '20px';
+        button.style.right = '-20px';
         button.style.zIndex = '2';
         button.style.borderRadius = '5px';
         last.appendChild(button);
@@ -535,6 +537,8 @@ button.appendChild(img);
 button.id = 'dropdown-btn'
 button.className = 'dropdown-button';
 button.style.position = 'relative';
+button.style.top = '20px';
+button.style.right = '-20px';
 button.style.float = 'right';
 button.style.marginTop = '20px';
 button.style.zIndex = '2';
