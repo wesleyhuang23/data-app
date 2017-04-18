@@ -394,11 +394,13 @@ function formCheck(){
         for(let i = 0; i < inputs.length; i++){
             if(!inputs[i].checked){
                 inputs[i].disabled = true;
+                document.getElementById('l' + inputs[i].id).style.opacity = '0.2';
             }
         }
     } else if(check.length < 5){
         for(let i = 0; i < inputs.length; i++){
             inputs[i].disabled = false;
+            document.getElementById('l' + inputs[i].id).style.opacity = '1';
         }
     }
 }
@@ -461,29 +463,18 @@ function createTable(){
     //needs to remove button before it hides
     if(second === 0){
         let commit = document.getElementById('header-commit');
-        console.log(commit);
         let btn = document.getElementsByClassName('dropdown-button');
-        console.log(btn[0]);
-        console.log(first);
         if(first === 1){
             commit.removeChild(btn[0]);
-            console.log('remove...')
             final = check[check.length - 1].id
-            console.log(final);
         }
         second++
-        console.log(second);
     } else if(second === 1){
-        console.log(final);
         let commit = document.getElementById('header-' + final);
-            console.log(commit);
             let btn = document.getElementsByClassName('dropdown-button');
-            console.log(btn[0]);
             if(first === 1){
                 commit.removeChild(btn[0]);
-                console.log('remove...')
                 final = check[check.length - 1].id
-                console.log(final);
         }
     }
     //hides fields that are unchecked
@@ -503,7 +494,6 @@ function createTable(){
 
     if(first === 1){
         let last = document.getElementsByClassName('h-' + check[check.length - 1].id)[0];
-        console.log(last);
         let img = document.createElement('img');
         img.src = 'https://upload.wikimedia.org/wikipedia/commons/4/4f/TriangleArrow-Down.svg';
         img.style.height = '15px';
@@ -517,6 +507,7 @@ function createTable(){
         button.style.float = 'right';
         button.style.marginTop = '20px';
         button.style.zIndex = '2';
+        button.style.borderRadius = '5px';
         last.appendChild(button);
         button.onclick = function(){
             formCheck();
@@ -547,6 +538,7 @@ button.style.position = 'relative';
 button.style.float = 'right';
 button.style.marginTop = '20px';
 button.style.zIndex = '2';
+button.style.borderRadius = '5px';
 button.onclick = function(){
     dropdown();
 };

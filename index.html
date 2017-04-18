@@ -14,7 +14,7 @@
     </form>
     <br>
     <div class="container">
-        <div class="h-name" id="header-name"><span onclick="sortName()">NAME</span></div>
+        <div class="h-name" id="header-name" ><span onclick="sortName()">NAME</span></div>
         <div class="h-plan" id="header-plan"><span onclick="sortPlan()">PLAN</span></div> 
         <div class="h-forecast" id="header-forecast"><span onclick="sortForeCast()">FORECAST</span></div> 
         <div class="h-best" id="header-best"><span onclick="sortBestCase()">BEST CASE</span></div>
@@ -28,27 +28,28 @@
             <hr>
             <form id="form" onclick="formCheck()">
                 <input type="checkbox" id="name" checked>
-                <label for="name">Name</label>
+                <label id="lname" for="name">Name</label>
                 <br>
                 <input type="checkbox" id="plan" checked>
-                <label for="name">Plan</label>
+                <label id="lplan" for="name">Plan</label>
                 <br>
                 <input type="checkbox" id="forecast" checked>
-                <label for="forecast">Forecast</label>
+                <label id="lforecast" for="forecast">Forecast</label>
                 <br>
                 <input type="checkbox" id="best" checked>
-                <label for="bestCase">Best Case</label>
+                <label id="lbest" for="bestCase">Best Case</label>
                 <br>
                 <input type="checkbox" id="monthly">
-                <label for="monthlyPlan">Monthly Plan</label>
+                <label id="lmonthly" for="monthlyPlan">Monthly Plan</label>
                 <br>
                 <input type="checkbox" id="commit" checked>
-                <label for="commit">Commit</label>
+                <label id="lcommit" for="commit">Commit</label>
                 <br>
                 <input type="checkbox" id="comments">
-                <label for="comment">Comment</label>
+                <label id="lcomments" for="comment">Comments</label>
             </form>
-            <button onclick="createTable()">Apply</button>
+            <hr>
+            <button class="apply" onclick="createTable()">Apply</button>
         </div>
     </div>
 
