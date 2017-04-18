@@ -18,10 +18,14 @@
         <div id="header-plan" onclick="sortPlan()">PLAN</div> 
         <div id="header-forecast" onclick="sortForeCast()">FORECAST</div> 
         <div id="header-best" onclick="sortBestCase()">BEST CASE</div>
+        <div id="header-month" onclick="sortMonthly()">MONTHLY PLAN</div>
         <div id="header-commit" onclick="sortCommit()">COMMIT </div>
+        <div id="header-comments" onclick="sortComments()">COMMENTS</div>
 
         <button class="dropdown-button" onclick="dropdown()">click me</button>
         <div class="dropdown">
+            <h3>Selected Fields</h3>
+            <hr>
             <form id="form" onclick="formCheck()">
                 <input type="checkbox" id="name" checked>
                 <label for="name">Name</label>

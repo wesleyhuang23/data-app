@@ -46,7 +46,9 @@ var data = [
             3900300,
             2900120
         ],
-        comments: []
+        comments: [
+            'Good',
+        ]
     },
     {
         name: 'Sweden',
@@ -78,7 +80,7 @@ var data = [
             4702120,
             4300200
         ],
-        comment: [
+        comments: [
             'for reference only'
         ]
     }
@@ -105,7 +107,7 @@ function toDollar(num){
 //creating each row for the table
 function table(){
     for(let i = 0; i < data.length; i++){
-        
+
         let name = document.createElement('div');
         name.className = "name"
         let plan = document.createElement('div');
@@ -114,12 +116,17 @@ function table(){
         forecast.className = 'forecast';
         let bestCase = document.createElement('div');
         bestCase.className = 'best'
+        let monthly = document.createElement('div');
+        monthly.className = 'monthly'
         let commit = document.createElement('div');
         commit.className = 'commit';
+        let comments = document.createElement('div');
+        comments.className = 'comments';
 
         name.innerHTML = data[i].name;
         plan.innerHTML = toDollar(data[i].plan);
         forecast.innerHTML = toDollar(data[i].forecast);
+        monthly.innerHTML = toDollar(data[i].monthlyPlan);
 
         //best case and commit has multiple elements that needed to be appended;
         for(let j = 0; j < data[i].bestCase.length; j++){
@@ -134,17 +141,25 @@ function table(){
             commit.appendChild(item);
         }
 
+        for(let y = 0; y < data[i].comments.length; y++){
+            let item = document.createElement('p');
+            item.innerHTML = data[i].comments[y];
+            comments.appendChild(item);
+        }
+
         let table = document.getElementsByClassName('container'); //getting the container and appending the data
 
         table[0].appendChild(name);
         table[0].appendChild(plan);
         table[0].appendChild(forecast);
         table[0].appendChild(bestCase);
+        table[0].appendChild(monthly);
         table[0].appendChild(commit);
+        table[0].appendChild(comments);
     }
 }
 
-table();
+table(); //creates the initial table
 
 //SHOW MORE AND LESS LOGIC
 let showLess = document.getElementsByClassName('best');
@@ -315,8 +330,6 @@ console.log(def.childNodes)
 
 function formCheck(){
     let inputs = [];
-    let count = 0;
-    console.log('form check');
     inputs.push(document.getElementById('name'));
     inputs.push(document.getElementById('plan'));
     inputs.push(document.getElementById('forecast'));
@@ -324,7 +337,6 @@ function formCheck(){
     inputs.push(document.getElementById('monthlyPlan'));
     inputs.push(document.getElementById('commit'));
     inputs.push(document.getElementById('comment'));
-    console.log(inputs);
     let check = inputs.filter(function(input){
         return input.checked === true;    
     })
@@ -344,6 +356,7 @@ function formCheck(){
 
 function dropdown(){
     console.log('clicked');
+    formCheck();
     let dropdown = document.getElementsByClassName('dropdown')[0];
     console.log(document.getElementsByClassName('dropdown'));
     if(dropdown.style.display === 'none'){
@@ -354,16 +367,16 @@ function dropdown(){
 }
 
 function createTable(){
-    let info = [];
-    let name = document.getElementById('name');
-    let plan = document.getElementById('plan');
-    let forecast = document.getElementById('forecast');
-    let bestCase = document.getElementById('best');
-    let monthlyPlan = document.getElementById('monthlyPlan');
-    let commit = document.getElementById('commit');
-    let comment = document.getElementById('comment');
-
-    console.log(name.checked);
-
-    
+    let inputs = [];
+    inputs.push(document.getElementById('name'));
+    inputs.push(document.getElementById('plan'));
+    inputs.push(document.getElementById('forecast'));
+    inputs.push(document.getElementById('bestCase'));
+    inputs.push(document.getElementById('monthlyPlan'));
+    inputs.push(document.getElementById('commit'));
+    inputs.push(document.getElementById('comment'));
+    let check = inputs.filter(function(input){
+        return input.checked === true;    
+    })
+    console.log(check);
 }
