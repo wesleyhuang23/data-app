@@ -327,7 +327,6 @@ function sortCommit(){
 
 //TABLE DISPLAY SELECTOR LOGIC
 let def = document.getElementsByClassName('dropdown')[0];
-console.log(def.childNodes)
 
 function formCheck(){
     let inputs = [];
@@ -341,7 +340,6 @@ function formCheck(){
     let check = inputs.filter(function(input){
         return input.checked === true;    
     })
-    console.log(check);
     if(check.length === 5){
         for(let i = 0; i < inputs.length; i++){
             if(!inputs[i].checked){
@@ -358,7 +356,6 @@ function formCheck(){
 function dropdown(){
     formCheck();
     let dropdown = document.getElementsByClassName('dropdown')[0];
-    console.log(document.getElementsByClassName('dropdown'));
     if(dropdown.style.display === 'none'){
         dropdown.style.display = 'block';
     } else {
@@ -382,7 +379,6 @@ function createTable(){
         return input.checked === true;
     })
     for(let i = 0; i < check.length; i++){
-        console.log(check[i].id);
         let current = document.getElementsByClassName(check[i].id);
         for(let j = 0; j < current.length; j++){
             current[j].style.display = 'block';
@@ -400,15 +396,11 @@ function createTable(){
     } else if(check.length === 1) {
         tableDisplay.id = 'one';
     }
-
     let uncheck = inputs.filter(function(input){
         return input.checked !== true;
     })
-    console.log(uncheck);
     for(let i = 0; i < uncheck.length; i++){
-        console.log(uncheck[i].id);
         let current = document.getElementsByClassName(uncheck[i].id);
-        console.log(current);
         for(let j = 0; j < current.length; j++){
             current[j].style.display = 'none';
         }
