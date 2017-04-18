@@ -156,11 +156,13 @@ function table(){
         table[0].appendChild(monthly);
         table[0].appendChild(commit);
         table[0].appendChild(comments);
+
+        //will check for default field selection to hide or show in the table
         createTable();
     }
 }
 
-table(); //creates the initial table
+table(); //creates the initial table on load
 
 //SHOW MORE AND LESS LOGIC
 let showLess = document.getElementsByClassName('best');
@@ -207,6 +209,7 @@ function more(){
 }
 
 //ASCENDING AND DESCENDING LOGIC
+//resets the table clearing the old one;
 function clearTable(){
     let parent = document.getElementsByClassName('container')[0];
     for(let i = 0; i < document.getElementsByClassName('name').length; i++){
@@ -249,14 +252,14 @@ let countcom = 0;
 
 function sortName(){
     if(countn === 0){
-        data.sort(function(a,b){
+        data.sort((a,b) => {
             return a.name > b.name;
         })
         countn++
         clearTable();
         table();
     } else if(countn === 1){
-        data.sort(function(a,b){
+        data.sort((a,b) => {
             return b.name > a.name;
         })
         countn = 0
@@ -266,14 +269,14 @@ function sortName(){
 }
 function sortPlan(){
     if(countp === 0){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return b.plan - a.plan
         })
         countp++
         clearTable();
         table();
     } else if(countp === 1){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return a.plan - b.plan
         })
         countp = 0;
@@ -302,14 +305,14 @@ function sortForeCast(){
 
 function sortBestCase(){
     if(countb === 0){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return b.bestCase[0] - a.bestCase[0];
         })
         countb++
         clearTable();
         table();
     } else if(countb === 1){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return a.bestCase[0] - b.bestCase[0];
         })
         countb = 0;
@@ -320,14 +323,14 @@ function sortBestCase(){
 
 function sortMonthly(){
     if(countm === 0){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return b.monthlyPlan - a.monthlyPlan
         })
         countm++
         clearTable();
         table();
     } else if(countm === 1){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return a.monthlyPlan - b.monthlyPlan;
         })
         countm = 0;
@@ -338,14 +341,14 @@ function sortMonthly(){
 
 function sortCommit(){
     if(countc === 0){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return b.commit[0] - a.commit[0]
         })
         countc++
         clearTable();
         table();
     } else if(countc === 1){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return a.commit[0] - b.commit[0]
         })
         countc = 0;
@@ -356,14 +359,14 @@ function sortCommit(){
 
 function sortComments(){
     if(countcom === 0){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return b.comments[0] > a.comments[0]
         })
         countcom++
         clearTable();
         table();
     } else if(countcom === 1){
-        data.sort(function(a, b){
+        data.sort((a, b) => {
             return a.comments[0] > b.comments[0]
         })
         countcom = 0;
@@ -422,7 +425,7 @@ function createTable(){
     inputs.push(document.getElementById('commit'));
     inputs.push(document.getElementById('comments'));
     //shows fields that are checked
-    let check = inputs.filter(function(input){
+    let check = inputs.filter((input) => {
         return input.checked === true;
     })
     for(let i = 0; i < check.length; i++){
@@ -463,3 +466,18 @@ function createTable(){
         }
     }
 }
+
+let button = document.createElement('button');
+button.className = 'dropdown-button';
+button.innerHTML = 'field selection';
+button.style.position = 'relative';
+button.style.float = 'right';
+button.style.marginTop = '20px';
+button.style.zIndex = '2';
+button.onclick = function(){
+    dropdown();
+};
+
+
+let commit = document.getElementById('header-commit');
+commit.appendChild(button);
