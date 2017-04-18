@@ -403,6 +403,8 @@ function formCheck(){
     }
 }
 
+var first = 0;
+var second = 0;
 function dropdown(){
     formCheck();
     let dropdown = document.getElementsByClassName('dropdown')[0];
@@ -411,9 +413,14 @@ function dropdown(){
     } else {
         dropdown.style.display = 'none';
     }
+    first = 1;
 }
-
+function assignClick(){
+    button.onclick = dropdown();
+}
+var final;
 function createTable(){
+    // commit.removeChild(document.getElementById('dropdown-btn'));
     let dropdown = document.getElementsByClassName('dropdown')[0];
     dropdown.style.display = 'none';
     let inputs = [];
@@ -451,6 +458,34 @@ function createTable(){
     } else if(check.length === 1) {
         tableDisplay.id = 'one';
     }
+    //needs to remove button before it hides
+    if(second === 0){
+        let commit = document.getElementById('header-commit');
+        console.log(commit);
+        let btn = document.getElementsByClassName('dropdown-button');
+        console.log(btn[0]);
+        console.log(first);
+        if(first === 1){
+            commit.removeChild(btn[0]);
+            console.log('remove...')
+            final = check[check.length - 1].id
+            console.log(final);
+        }
+        second++
+        console.log(second);
+    } else if(second === 1){
+        console.log(final);
+        let commit = document.getElementById('header-' + final);
+            console.log(commit);
+            let btn = document.getElementsByClassName('dropdown-button');
+            console.log(btn[0]);
+            if(first === 1){
+                commit.removeChild(btn[0]);
+                console.log('remove...')
+                final = check[check.length - 1].id
+                console.log(final);
+        }
+    }
     //hides fields that are unchecked
     let uncheck = inputs.filter(function(input){
         return input.checked !== true;
@@ -465,11 +500,49 @@ function createTable(){
             current2[x].style.display = 'none';
         }
     }
+
+    if(first === 1){
+        let last = document.getElementsByClassName('h-' + check[check.length - 1].id)[0];
+        console.log(last);
+        let img = document.createElement('img');
+        img.src = 'https://upload.wikimedia.org/wikipedia/commons/4/4f/TriangleArrow-Down.svg';
+        img.style.height = '15px';
+        img.style.width = '15px';
+
+        let button = document.createElement('button');
+        button.appendChild(img);
+        button.id = 'dropdown-btn'
+        button.className = 'dropdown-button';
+        button.style.position = 'relative';
+        button.style.float = 'right';
+        button.style.marginTop = '20px';
+        button.style.zIndex = '2';
+        last.appendChild(button);
+        button.onclick = function(){
+            formCheck();
+            let dropdown = document.getElementsByClassName('dropdown')[0];
+            if(dropdown.style.display === 'none'){
+                dropdown.style.display = 'block';
+            } else {
+                dropdown.style.display = 'none';
+            }
+            first = 1;
+        }
+    }
+    
+    
 }
 
+
+let img = document.createElement('img');
+img.src = 'https://upload.wikimedia.org/wikipedia/commons/4/4f/TriangleArrow-Down.svg';
+img.style.height = '15px';
+img.style.width = '15px';
+
 let button = document.createElement('button');
+button.appendChild(img);
+button.id = 'dropdown-btn'
 button.className = 'dropdown-button';
-button.innerHTML = 'field selection';
 button.style.position = 'relative';
 button.style.float = 'right';
 button.style.marginTop = '20px';
@@ -481,3 +554,4 @@ button.onclick = function(){
 
 let commit = document.getElementById('header-commit');
 commit.appendChild(button);
+// commit.removeChild(document.getElementById('dropdown-btn'));
