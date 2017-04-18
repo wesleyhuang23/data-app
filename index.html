@@ -14,11 +14,38 @@
     </form>
     <br>
     <div class="container">
-        <div class="header" onclick="sortName()">NAME</div>
-        <div class="header" onclick="sortPlan()">PLAN</div> 
-        <div class="header" onclick="sortForeCast()">FORECAST</div> 
-        <div class="header" onclick="sortBestCase()">BEST CASE</div>
-        <div class="header" onclick="sortCommit()">COMMIT</div>
+        <div id="header-name" onclick="sortName()">NAME</div>
+        <div id="header-plan" onclick="sortPlan()">PLAN</div> 
+        <div id="header-forecast" onclick="sortForeCast()">FORECAST</div> 
+        <div id="header-best" onclick="sortBestCase()">BEST CASE</div>
+        <div id="header-commit" onclick="sortCommit()">COMMIT </div>
+
+        <button class="dropdown-button" onclick="dropdown()">click me</button>
+        <div class="dropdown">
+            <form id="form" onclick="formCheck()">
+                <input type="checkbox" id="name" checked>
+                <label for="name">Name</label>
+                <br>
+                <input type="checkbox" id="plan" checked>
+                <label for="name">Plan</label>
+                <br>
+                <input type="checkbox" id="forecast" checked>
+                <label for="forecast">Forecast</label>
+                <br>
+                <input type="checkbox" id="bestCase" checked>
+                <label for="bestCase">Best Case</label>
+                <br>
+                <input type="checkbox" id="monthlyPlan">
+                <label for="monthlyPlan">Monthly Plan</label>
+                <br>
+                <input type="checkbox" id="commit" checked>
+                <label for="commit">Commit</label>
+                <br>
+                <input type="checkbox" id="comment">
+                <label for="comment">Comment</label>
+            </form>
+            <button onclick="createTable()">Apply</button>
+        </div>
     </div>
 
     <script src="app.js"></script>

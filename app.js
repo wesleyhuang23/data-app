@@ -7,9 +7,13 @@ var data = [
             12700200,
             11700400
         ],
+        monthlyPlan: 234450300,
         commit: [
             12700200,
             11700400
+        ],
+        comments: [
+            'great'
         ]
     },
     {
@@ -20,9 +24,13 @@ var data = [
             2900450,
             2890120
         ],
+        monthlyPlan: 203000200,
         commit: [
             2900450,
             2890120
+        ],
+        comments: [
+            'discount price'
         ]
     },
     {
@@ -33,10 +41,12 @@ var data = [
             3900300,
             2900300
         ],
+        monthlyPlan: 120200300,
         commit: [
             3900300,
             2900120
-        ]
+        ],
+        comments: []
     },
     {
         name: 'Sweden',
@@ -46,9 +56,13 @@ var data = [
             6200300,
             2400900
         ],
+        monthlyPlan: 432244561,
         commit: [
             6200200,
             2400900
+        ],
+        comments: [
+            'more data coming'
         ]
     },
     {
@@ -59,9 +73,13 @@ var data = [
             4702120,
             4300200
         ],
+        monthlyPlan: 243444020,
         commit: [
             4702120,
             4300200
+        ],
+        comment: [
+            'for reference only'
         ]
     }
 ]
@@ -175,7 +193,6 @@ function more(){
 //ASCENDING AND DESCENDING LOGIC
 function clearTable(){
     let parent = document.getElementsByClassName('container')[0];
-    console.log(parent);
     for(let i = 0; i < document.getElementsByClassName('name').length; i++){
         parent.removeChild(document.getElementsByClassName('name')[i])
         i--
@@ -292,4 +309,49 @@ function sortCommit(){
     }
 }
 
+//TABLE DISPLAY SELECTOR LOGIC
+let def = document.getElementsByClassName('dropdown')[0];
+console.log(def.childNodes)
 
+function formCheck(){
+    let inputs = [];
+    let count = 0;
+    console.log('form check');
+    inputs.push(document.getElementById('name'));
+    inputs.push(document.getElementById('plan'));
+    inputs.push(document.getElementById('forecast'));
+    inputs.push(document.getElementById('bestCase'));
+    inputs.push(document.getElementById('monthlyPlan'));
+    inputs.push(document.getElementById('commit'));
+    inputs.push(document.getElementById('comment'));
+
+    
+    console.log(inputs);
+    console.log(inputs.length);
+}
+
+function dropdown(){
+    console.log('clicked');
+    let dropdown = document.getElementsByClassName('dropdown')[0];
+    console.log(document.getElementsByClassName('dropdown'));
+    if(dropdown.style.display === 'none'){
+        dropdown.style.display = 'block';
+    } else {
+        dropdown.style.display = 'none';
+    }
+}
+
+function createTable(){
+    let info = [];
+    let name = document.getElementById('name');
+    let plan = document.getElementById('plan');
+    let forecast = document.getElementById('forecast');
+    let bestCase = document.getElementById('best');
+    let monthlyPlan = document.getElementById('monthlyPlan');
+    let commit = document.getElementById('commit');
+    let comment = document.getElementById('comment');
+
+    console.log(name.checked);
+
+    
+}

@@ -22,12 +22,37 @@ form{
 form > input{
     margin-right: 10px;
 }
-.header{
-    font-weight: bold;
-    color: #979797;
-    font-size: 20px;
-}
-.header:hover{
+#header-name:hover{
     background-color: #979797;
     cursor: pointer;
 }
+#header-plan:hover{
+    background-color: #979797;
+    cursor: pointer;
+}
+#header-forecast:hover{
+    background-color: #979797;
+    cursor: pointer;
+}
+#header-best:hover{
+    background-color: #979797;
+    cursor: pointer;
+}
+#header-commit:hover{
+    background-color: #979797;
+    cursor: pointer;
+}
+.dropdown-button{
+    position: absolute;
+    right: 43px;
+    top: 165px;
+}
+.dropdown{
+    background-color: #979797;
+    position:absolute;
+    right: 43px;
+    top: 186px;
+    display: none;
+    flex-direction: column;
+}
+
