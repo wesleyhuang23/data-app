@@ -5,7 +5,31 @@
 
 .container{
     display: grid;
-    grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    width: 95%;
+    margin-left: 20px;
+}
+#four.container{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    width: 95%;
+    margin-left: 20px;
+}
+#three.container{
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    width: 95%;
+    margin-left: 20px;
+}
+#two.container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 95%;
+    margin-left: 20px;
+}
+#one.container{
+    display: grid;
+    grid-template-columns: 40%;
     width: 95%;
     margin-left: 20px;
 }

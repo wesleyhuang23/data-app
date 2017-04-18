@@ -156,6 +156,7 @@ function table(){
         table[0].appendChild(monthly);
         table[0].appendChild(commit);
         table[0].appendChild(comments);
+        createTable();
     }
 }
 
@@ -333,10 +334,10 @@ function formCheck(){
     inputs.push(document.getElementById('name'));
     inputs.push(document.getElementById('plan'));
     inputs.push(document.getElementById('forecast'));
-    inputs.push(document.getElementById('bestCase'));
-    inputs.push(document.getElementById('monthlyPlan'));
+    inputs.push(document.getElementById('best'));
+    inputs.push(document.getElementById('monthly'));
     inputs.push(document.getElementById('commit'));
-    inputs.push(document.getElementById('comment'));
+    inputs.push(document.getElementById('comments'));
     let check = inputs.filter(function(input){
         return input.checked === true;    
     })
@@ -355,7 +356,6 @@ function formCheck(){
 }
 
 function dropdown(){
-    console.log('clicked');
     formCheck();
     let dropdown = document.getElementsByClassName('dropdown')[0];
     console.log(document.getElementsByClassName('dropdown'));
@@ -367,16 +367,50 @@ function dropdown(){
 }
 
 function createTable(){
+    let dropdown = document.getElementsByClassName('dropdown')[0];
+    dropdown.style.display = 'none';
     let inputs = [];
     inputs.push(document.getElementById('name'));
     inputs.push(document.getElementById('plan'));
     inputs.push(document.getElementById('forecast'));
-    inputs.push(document.getElementById('bestCase'));
-    inputs.push(document.getElementById('monthlyPlan'));
+    inputs.push(document.getElementById('best'));
+    inputs.push(document.getElementById('monthly'));
     inputs.push(document.getElementById('commit'));
-    inputs.push(document.getElementById('comment'));
+    inputs.push(document.getElementById('comments'));
+
     let check = inputs.filter(function(input){
-        return input.checked === true;    
+        return input.checked === true;
     })
-    console.log(check);
+    for(let i = 0; i < check.length; i++){
+        console.log(check[i].id);
+        let current = document.getElementsByClassName(check[i].id);
+        for(let j = 0; j < current.length; j++){
+            current[j].style.display = 'block';
+        }
+    }
+    let tableDisplay = document.getElementsByClassName('container')[0];
+    if(check.length === 5){
+        tableDisplay.id = '';
+    } else if(check.length === 4){
+        tableDisplay.id = 'four';
+    } else if(check.length === 3){
+        tableDisplay.id = 'three';
+    } else if (check.length === 2){
+        tableDisplay.id = 'two';
+    } else if(check.length === 1) {
+        tableDisplay.id = 'one';
+    }
+
+    let uncheck = inputs.filter(function(input){
+        return input.checked !== true;
+    })
+    console.log(uncheck);
+    for(let i = 0; i < uncheck.length; i++){
+        console.log(uncheck[i].id);
+        let current = document.getElementsByClassName(uncheck[i].id);
+        console.log(current);
+        for(let j = 0; j < current.length; j++){
+            current[j].style.display = 'none';
+        }
+    }
 }

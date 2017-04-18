@@ -14,13 +14,13 @@
     </form>
     <br>
     <div class="container">
-        <div id="header-name" onclick="sortName()">NAME</div>
-        <div id="header-plan" onclick="sortPlan()">PLAN</div> 
-        <div id="header-forecast" onclick="sortForeCast()">FORECAST</div> 
-        <div id="header-best" onclick="sortBestCase()">BEST CASE</div>
-        <div id="header-month" onclick="sortMonthly()">MONTHLY PLAN</div>
-        <div id="header-commit" onclick="sortCommit()">COMMIT </div>
-        <div id="header-comments" onclick="sortComments()">COMMENTS</div>
+        <div class="name" id="header-name" onclick="sortName()" alt="name">NAME</div>
+        <div class="plan" id="header-plan" onclick="sortPlan()" alt="plan">PLAN</div> 
+        <div class="forecase" id="header-forecast" onclick="sortForeCast()" alt="forecast">FORECAST</div> 
+        <div class="best" id="header-best" onclick="sortBestCase()" alt="best">BEST CASE</div>
+        <div class="monthly" id="header-monthly" onclick="sortMonthly()" alt="monthly">MONTHLY PLAN</div>
+        <div class="commit" id="header-commit" onclick="sortCommit()" alt="commit">COMMIT </div>
+        <div class="comments" id="header-comments" onclick="sortComments()" alt="comments">COMMENTS</div>
 
         <button class="dropdown-button" onclick="dropdown()">click me</button>
         <div class="dropdown">
@@ -36,16 +36,16 @@
                 <input type="checkbox" id="forecast" checked>
                 <label for="forecast">Forecast</label>
                 <br>
-                <input type="checkbox" id="bestCase" checked>
+                <input type="checkbox" id="best" checked>
                 <label for="bestCase">Best Case</label>
                 <br>
-                <input type="checkbox" id="monthlyPlan">
+                <input type="checkbox" id="monthly">
                 <label for="monthlyPlan">Monthly Plan</label>
                 <br>
                 <input type="checkbox" id="commit" checked>
                 <label for="commit">Commit</label>
                 <br>
-                <input type="checkbox" id="comment">
+                <input type="checkbox" id="comments">
                 <label for="comment">Comment</label>
             </form>
             <button onclick="createTable()">Apply</button>
