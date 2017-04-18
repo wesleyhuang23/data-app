@@ -324,10 +324,22 @@ function formCheck(){
     inputs.push(document.getElementById('monthlyPlan'));
     inputs.push(document.getElementById('commit'));
     inputs.push(document.getElementById('comment'));
-
-    
     console.log(inputs);
-    console.log(inputs.length);
+    let check = inputs.filter(function(input){
+        return input.checked === true;    
+    })
+    console.log(check);
+    if(check.length === 5){
+        for(let i = 0; i < inputs.length; i++){
+            if(!inputs[i].checked){
+                inputs[i].disabled = true;
+            }
+        }
+    } else if(check.length < 5){
+        for(let i = 0; i < inputs.length; i++){
+            inputs[i].disabled = false;
+        }
+    }
 }
 
 function dropdown(){
