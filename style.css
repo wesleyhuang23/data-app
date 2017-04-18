@@ -104,11 +104,12 @@ span:hover{
 .dropdown{
     background-color: white;
     position:absolute;
-    right: 130px;
+    right: 8%;
     top: 190px;
     display: none;
     padding: 10px;
     box-shadow: 5px 5px 20px;
+    z-index: 1;
 }
 #form{
     padding: 0px;
@@ -143,4 +144,17 @@ span:hover{
     border: none;
     border-radius: 5px;
     background-color: #5AC192
+}
+
+
+@media (max-width: 1000px){
+    span {
+        font-size: 15px;
+    }
+    div{
+        font-size: 12px;
+    }
+    .dropdown{
+        top: 210px;
+    }
 }
